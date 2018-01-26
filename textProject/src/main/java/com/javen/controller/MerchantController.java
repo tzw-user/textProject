@@ -12,7 +12,7 @@ import com.javen.service.MerchantService;
 
 @Controller
 @RequestMapping("/Merchant")
-public class UserController {
+public class MerchantController {
 	@Autowired
 	private MerchantService merchantService;
 	
