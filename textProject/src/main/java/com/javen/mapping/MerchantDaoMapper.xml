@@ -12,7 +12,7 @@
   <!-- 获取Merchant全部数据 -->
   <select id="getMerchant" resultType="com.javen.entity.Merchant">    
 	  <!--id 必须和dao接口中方法名一致    parameterType 参数类型    resultMap 返回值类型 -->
-			select * from dd_merchant
+			select * from t_car
   </select>
   
 </mapper>

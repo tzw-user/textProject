@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 /**
  * @author XiaoGui
- * @Description 商户表(对应数据库的dd_merchant数据表)
+ * @Description 车辆表(对应数据库的t_car数据表)
  * @date  2018年1月8日16:14:17
  * @version V1.0
  */
@@ -20,13 +20,13 @@ public class Merchant  implements Serializable{
 	 */
 	private int id;
 	/**
-	 * 商户名称（最大30个字符）
+	 * 车牌号码（最大30个字符）
 	 */
-	private String name;
+	private String carNo;
 	/**
-	 * 商户地址（最大100个字符）
+	 * 车主（最大100个字符）
 	 */
-	private String address;
+	private String ownerName;
 	
 	public int getId() {
 		return id;
@@ -34,19 +34,16 @@ public class Merchant  implements Serializable{
 	public void setId(int id) {
 		this.id = id;
 	}
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public String getAddress() {
-        return address;
-    }
-    public void setAddress(String address) {
-        this.address = address;
-    }
-	
-	
-    
+	public String getCarNo() {
+		return carNo;
+	}
+	public void setCarNo(String carNo) {
+		this.carNo = carNo;
+	}
+	public String getOwnerName() {
+		return ownerName;
+	}
+	public void setOwnerName(String ownerName) {
+		this.ownerName = ownerName;
+	}
 }

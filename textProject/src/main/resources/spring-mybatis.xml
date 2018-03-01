@@ -44,4 +44,71 @@
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">  
         <property name="basePackage" value="com.javen.dao" />  
     </bean> 
+    
+    <!-- 1.配置 securityManager-->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="cacheManager" ref="cacheManager"/>
+        <property name="realm" ref="jdbcRealm"/>
+    </bean>
+    
+    <!-- 2.配置cacheManager
+         2.需要加入ehcache的jar包及配置文件。
+     -->
+    <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+        <property name="cacheManagerConfigFile" value="classpath:ehcache.xml"/>
+    </bean>
+    <!-- 
+       3.配置Realm
+       3.1 直接配置实现了org.apache.shiro.realm.Realm 接口的bean
+        
+     -->
+    <bean id="jdbcRealm" class="com.javen.testshiro.ShiroRealm">
+        
+    </bean>
+    
+    <!-- 
+     4.配置LifecycleBeanPostProcessor。可以自定的来调用配置在Spring IOC容器中 shiro bean的生命周期方法
+    
+     -->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+    
+    <!--5.启用ioc 容器中使用shiro的注解，但必须在配置了 LifecycleBeanPostProcessor之后才能使用 -->
+     <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+          depends-on="lifecycleBeanPostProcessor"/>
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager"/>
+    </bean>
+    
+    <!-- 
+       6.配置shiroFilter
+       6.1 id 必须和web.xml文件中配置的DelegatingFilterProxy 的 <filter-name> 一致
+       
+     -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+        <!-- 登录页面 -->
+        <property name="loginUrl" value="/login.jsp"/>
+        <!-- 登录成功页面 -->
+        <property name="successUrl" value="/index.jsp"/>
+        <!-- 没有权限就显示该页面 -->
+        <property name="unauthorizedUrl" value="/unauthorized.jsp"/>
+        
+        
+        <!-- 
+                                  配置那些页面需要受保护 
+                                 以及访问这些页面需要的权限
+                              （1）anon  可以被匿名访问
+                              （2）authc 表示必须认证之后才能访问（即登陆）                                                  
+        -->
+        <property name="filterChainDefinitions">
+            <value>
+                /login.jsp= anon
+                # everything else requires authentication:
+                /** = authc
+            </value>
+        </property>
+    </bean>
+    
+    
+    
 </beans>
