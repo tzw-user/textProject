@@ -103,6 +103,7 @@
         <property name="filterChainDefinitions">
             <value>
                 /login.jsp= anon
+                /shiro/login= anon
                 # everything else requires authentication:
                 /** = authc
             </value>

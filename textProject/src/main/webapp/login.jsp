@@ -7,7 +7,7 @@
 <title>登录</title>
 </head>
 <body>
-	<form action="" method="post">
+	<form action="shiro/login" method="post">
 		<table>
 			<tr>
 				<td>用户名</td>
