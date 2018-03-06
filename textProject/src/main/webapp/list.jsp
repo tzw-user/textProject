@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>你没有权限！</h1>
+<h1>User Page</h1>
 </body>
 </html>

@@ -8,5 +8,8 @@
 </head>
 <body>
 <h1>success</h1>
+<a href="list.jsp">admin</a><br/>
+<a href="user.jsp">user</a><br/>
+<a href="shiro/logout">Logout</a>
 </body>
 </html>

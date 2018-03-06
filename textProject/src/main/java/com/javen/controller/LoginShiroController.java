@@ -33,6 +33,6 @@ public class LoginShiroController {
 				System.out.println("登录失败！！！！"+ae.getMessage());
 			}
 		}
-		return "index";
+		return "redirect:/index.jsp";
 	}
 }
