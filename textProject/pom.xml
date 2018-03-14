@@ -252,6 +252,24 @@
 				<artifactId>shiro-ehcache</artifactId>
 				<version>${shiro.version}</version>
 			</dependency>
+			<!-- HttpClient -->
+			<dependency>
+			    <groupId>org.apache.httpcomponents</groupId>
+			    <artifactId>httpclient</artifactId>
+			    <version>4.5.2</version>
+           </dependency>
+		   <dependency>  
+			    <groupId>org.apache.httpcomponents</groupId>  
+			    <artifactId>httpcore</artifactId>  
+			    <version>4.4.6</version>  
+          </dependency>
+          <!-- commons-io 封装io -->
+		  <dependency>
+			    <groupId>commons-io</groupId>
+			    <artifactId>commons-io</artifactId>
+			    <version>2.6</version>
+		  </dependency>
+			
   </dependencies>
   
   <!-- 配置tomcat插件 -->
