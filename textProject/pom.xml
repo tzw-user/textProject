@@ -153,6 +153,11 @@
 				<version>${jackson.version}</version>
 			</dependency>
 			<dependency>
+			     <groupId>org.codehaus.jackson</groupId>
+			     <artifactId>jackson-mapper-asl</artifactId>
+			     <version>1.9.12</version>
+            </dependency>
+			<dependency>
 				<groupId>com.fasterxml.jackson.core</groupId>
 				<artifactId>jackson-annotations</artifactId>
 				<version>${jackson.version}</version>
@@ -281,20 +286,22 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat7-maven-plugin</artifactId>
-				<configuration>
-					<path>/</path>
-					<port>8088</port>
-				</configuration>
-			</plugin>
-			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 					<configuration>
 						<source>1.8</source>
 						<target>1.8</target>
+						<encoding>UTF-8</encoding>
 					</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<configuration>
+					<path>/</path>
+					<port>8088</port>
+					<uriEncoding>UTF-8</uriEncoding>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

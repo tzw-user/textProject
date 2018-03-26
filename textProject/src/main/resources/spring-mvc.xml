@@ -23,6 +23,7 @@
      <context:component-scan base-package="com.javen.controller" />
 
 	<!-- 扩充了注解驱动，可以将请求参数绑定到控制器参数 -->
+	<mvc:default-servlet-handler/>
 	<mvc:annotation-driven />
 
 	<!-- 定义跳转的文件的前后缀 ，视图模式配置 -->
@@ -31,5 +32,15 @@
 		<property name="prefix" value="/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
+	
+	<!--配置spring mvc 编码格式  -->
+	<mvc:annotation-driven>
+        <mvc:message-converters register-defaults="true">
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+              <constructor-arg value="UTF-8" />
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+	
 	
 </beans>  

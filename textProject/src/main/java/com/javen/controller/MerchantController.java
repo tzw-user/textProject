@@ -2,6 +2,8 @@ package com.javen.controller;
 
 import java.util.List;
 
+import org.codehaus.jackson.map.DeserializationConfig;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,8 +25,33 @@ public class MerchantController {
     
 	@RequestMapping(value="/getMerchant",method=RequestMethod.GET)
 	@ResponseBody
-	public List<Merchant> getMerchant(){
+	public String getMerchant(String callback){
 		List<Merchant> list = merchantService.getMerchant();
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES,false);
+		String result = null;
+		try {
+			result = mapper.writeValueAsString(list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+	    //加上返回参数
+	    result=callback+"("+result+")";
+		return result;
+	}
+	
+	@RequestMapping(value="/getMerchants",method=RequestMethod.GET)
+	@ResponseBody
+	public List<Merchant> getMerchants(){
+		List<Merchant> list = merchantService.getMerchant();
+
 		return list;
+	}
+	
+	@RequestMapping(value="/getMerchants1",method=RequestMethod.GET)
+	@ResponseBody
+	public String  getMerchants1(){
+        String result="呵呵";
+		return result;
 	}
 }
