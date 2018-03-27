@@ -27,10 +27,13 @@ public class MerchantController {
 	@ResponseBody
 	public String getMerchant(String callback){
 		List<Merchant> list = merchantService.getMerchant();
+		//jackson转换
 		ObjectMapper mapper = new ObjectMapper();
+		//忽略 在json字符串中存在，但是在java对象中不存在对应属性的情况。防止错误
 		mapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES,false);
 		String result = null;
 		try {
+			//将list转为字符串
 			result = mapper.writeValueAsString(list);
 		} catch (Exception e) {
 			e.printStackTrace();
